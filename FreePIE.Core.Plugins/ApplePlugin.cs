@@ -87,7 +87,7 @@ namespace FreePIE.Core.Plugins
                     string data = Encoding.ASCII.GetString(bytes, 0, len);
                     String[] fields = data.Split(delims);
 
-                    if (fields[0] == "Timestamp")
+                    if (fields[0] == "F")
                     {
                         // The first message is a field definition list
                         // Parse it to determine which data is present and where it is going to be located
@@ -97,12 +97,12 @@ namespace FreePIE.Core.Plugins
                             // The iPhone app seems to orient phone with the long axis running east/west
                             // while I assume the phone should have the long axis running north/south
                             // This difference in perspective, reverses the definition of pitch and roll
-                            if (fields[i] == "Roll")
-                                PitchIndex = i;
-                            else if (fields[i] == "Pitch")
-                                RollIndex = i;
-                            else if (fields[i] == "Yaw")
-                                YawIndex = i;
+                            if (fields[4] == "Roll")
+                                PitchIndex = 4;
+                            else if (fields[8] == "Pitch")
+                                RollIndex = 8;
+                            else if (fields[12] == "Yaw")
+                                YawIndex = 12;
                             YawPeriod = 0;
                         }
 
